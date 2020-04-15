@@ -21,6 +21,18 @@ public class E206ReverseLinkedList {
         return previousNode;
     }
 
+    public ListNode reverseListRecursive(ListNode head) {
+        if (head.next == null) return head;
+
+        ListNode newHead = reverseList(head.next);
+
+        ListNode current = head.next;
+        current.next = head;
+        head.next = null;
+
+        return newHead;
+    }
+
     public void print(ListNode head) {
         ListNode current = head;
 
@@ -30,6 +42,8 @@ public class E206ReverseLinkedList {
             current = current.next;
             i++;
         }
+
+        System.out.println();
     }
 
     public static void main(String[] args) {
@@ -43,7 +57,11 @@ public class E206ReverseLinkedList {
         A.next = B;
         B.next = C;
         C.next = D;
+        ListNode x = A;
 
-        program.print(program.reverseList(A));
+        x = program.reverseList(x);
+        program.print(x);
+        x = program.reverseListRecursive(x);
+        program.print(x);
     }
 }
